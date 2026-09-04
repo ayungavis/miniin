@@ -50,6 +50,10 @@ identifier_name:
     warning: 2
   excluded: [id, x, y]
 
+opening_brace:
+  ignore_multiline_function_signatures: true
+  ignore_multiline_statement_conditions: true
+
 custom_rules:
   no_any_view:
     name: "AnyView is forbidden"

@@ -18,11 +18,17 @@ struct ConventionsTests {
     @Test("Every AppColor token has a colorset with an explicit dark variant")
     func colorTokensHaveDarkVariants() throws {
         let source = try String(
-            contentsOf: Self.repoRoot.appending(path: "packages/MiniinKit/Sources/MiniinKit/DesignSystem/AppColor.swift"),
+            contentsOf: Self.repoRoot.appending(
+                path: "packages/MiniinKit/Sources/MiniinKit/DesignSystem/AppColor.swift"
+            ),
             encoding: .utf8
         )
-        let catalog = Self.repoRoot.appending(path: "packages/MiniinKit/Sources/MiniinKit/Resources/Colors.xcassets")
-        let names = Self.matches(in: source, pattern: #"Color\("([^"]+)", bundle: \.module\)"#, group: 1)
+        let catalog = Self.repoRoot.appending(
+            path: "packages/MiniinKit/Sources/MiniinKit/Resources/Colors.xcassets"
+        )
+        let names = Self.matches(
+            in: source, pattern: #"Color\("([^"]+)", bundle: \.module\)"#, group: 1
+        )
 
         #expect(!names.isEmpty)
 
@@ -32,7 +38,10 @@ struct ConventionsTests {
                 Issue.record("Missing colorset for AppColor token \(name)")
                 continue
             }
-            #expect(json.contains("\"value\" : \"dark\""), Comment(rawValue: "\(name) has no dark appearance"))
+            #expect(
+                json.contains("\"value\" : \"dark\""),
+                Comment(rawValue: "\(name) has no dark appearance")
+            )
         }
     }
 }
@@ -52,7 +61,11 @@ extension ConventionsTests {
         for root in scannedRoots {
             let directory = repoRoot.appending(path: root)
             guard FileManager.default.fileExists(atPath: directory.path()) else { continue }
-            guard let walker = FileManager.default.enumerator(at: directory, includingPropertiesForKeys: nil) else {
+            guard
+                let walker = FileManager.default.enumerator(
+                    at: directory, includingPropertiesForKeys: nil
+                )
+            else {
                 continue
             }
             for case let url as URL in walker where url.pathExtension == "swift" {
@@ -98,18 +111,29 @@ extension ConventionsTests {
             guard let markerRange = code.range(of: "//") ?? code.range(of: "/*") else { continue }
 
             let before = String(code[code.startIndex ..< markerRange.lowerBound])
-            let comment = String(line[line.index(
-                line.startIndex,
-                offsetBy: code.distance(from: code.startIndex, to: markerRange.lowerBound)
-            )...])
-                .trimmingCharacters(in: .whitespaces)
+            let comment = String(
+                line[
+                    line.index(
+                        line.startIndex,
+                        offsetBy: code.distance(from: code.startIndex, to: markerRange.lowerBound)
+                    )...
+                ]
+            )
+            .trimmingCharacters(in: .whitespaces)
             let location = "\(file.lastPathComponent):\(index + 1)"
 
-            if comment.hasPrefix("// swiftlint:") || comment.hasPrefix("// MARK:") || comment.hasPrefix("// ponytail:") {
+            if comment.hasPrefix("// swiftlint:") || comment.hasPrefix("// MARK:")
+                || comment.hasPrefix("// ponytail:")
+            {
                 continue
             }
 
-            if isEndpointFile, comment.range(of: #"^/// (GET|POST|PUT|PATCH|DELETE) /\S+$"#, options: .regularExpression) != nil {
+            if isEndpointFile,
+               comment.range(
+                   of: #"^/// (GET|POST|PUT|PATCH|DELETE) /\S+$"#, options: .regularExpression
+               )
+               != nil
+            {
                 endpointDocCount += 1
                 if endpointDocCount > 1 {
                     violations.append("\(location): more than one endpoint doc line")
@@ -126,5 +150,22 @@ extension ConventionsTests {
         }
 
         return violations
+    }
+
+    @Test("Each source file declares a type named after it")
+    func filenamesMatchDeclaredTypes() throws {
+        var violations: [String] = []
+
+        for file in try Self.scannedSwiftFiles() {
+            let name = file.deletingPathExtension().lastPathComponent
+            let source = try String(contentsOf: file, encoding: .utf8)
+            let pattern = "(enum|struct|class|actor|protocol|extension)\\s+\(name)"
+
+            if source.range(of: pattern, options: .regularExpression) == nil {
+                violations.append("\(file.lastPathComponent): declares no type named \(name)")
+            }
+        }
+
+        #expect(violations.isEmpty, Comment(rawValue: violations.joined(separator: "\n")))
     }
 }
