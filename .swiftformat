@@ -1,0 +1,13 @@
+--swiftversion 6.0
+--indent 4
+--maxwidth 140
+--header strip
+--self remove
+--importgrouping testable-bottom
+--wraparguments before-first
+--wrapparameters before-first
+--wrapcollections before-first
+--closingparen balanced
+--commas inline
+--stripunusedargs closure-only
+--exclude packages/MiniinKit/.build,build,apps/Miniin/Miniin.xcodeproj

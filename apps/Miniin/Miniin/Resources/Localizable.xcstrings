@@ -1,0 +1,24 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "app.tagline" : {
+      "comment" : "Product tagline shown on the launch screen.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Make every video lighter."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bikin videomu lebih ringan."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

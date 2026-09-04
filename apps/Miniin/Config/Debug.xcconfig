@@ -1,0 +1,4 @@
+#include "Base.xcconfig"
+
+MINIIN_ENVIRONMENT = development
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) DEBUG

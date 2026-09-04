@@ -1,0 +1,41 @@
+.DS_Store
+
+# Xcode
+*.xcodeproj/
+*.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+xcuserdata/
+DerivedData/
+*.xcuserstate
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# Secrets and local configuration
+*.p12
+*.mobileprovision
+*.cer
+Config/Secrets.xcconfig
+.env
+.env.*
+
+# FFmpeg build artifacts
+vendor/ffmpeg/build/
+*.xcframework
+
+# Tooling
+.codegraph/
+skills-lock.json
+
+# Agent tooling (large, machine-generated)
+.agents/
+
+# Build output
+build/

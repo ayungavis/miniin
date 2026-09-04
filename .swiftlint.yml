@@ -1,0 +1,76 @@
+included:
+  - packages/MiniinKit/Sources
+  - packages/MiniinKit/Tests
+  - apps/Miniin/Miniin
+
+excluded:
+  - packages/MiniinKit/.build
+  - build
+
+opt_in_rules:
+  - force_unwrapping
+  - implicitly_unwrapped_optional
+  - explicit_init
+  - empty_count
+  - first_where
+  - last_where
+  - contains_over_first_not_nil
+  - fatal_error_message
+  - closure_spacing
+  - collection_alignment
+  - redundant_nil_coalescing
+  - toggle_bool
+  - prefer_self_type_over_type_of_self
+  - unneeded_parentheses_in_closure_argument
+
+force_unwrapping:
+  severity: error
+force_try:
+  severity: error
+force_cast:
+  severity: error
+implicitly_unwrapped_optional:
+  severity: error
+
+line_length:
+  warning: 140
+  error: 200
+  ignores_comments: true
+
+type_body_length:
+  warning: 250
+  error: 400
+
+file_length:
+  warning: 400
+  error: 600
+
+identifier_name:
+  min_length:
+    warning: 2
+  excluded: [id, x, y]
+
+custom_rules:
+  no_any_view:
+    name: "AnyView is forbidden"
+    regex: '\bAnyView\b'
+    message: "Use generics or @ViewBuilder instead of AnyView."
+    severity: error
+
+  no_print:
+    name: "print() is forbidden"
+    regex: '(^|[^A-Za-z0-9_.])print\('
+    message: "Use structured logging via Log (PRD 21.1)."
+    severity: error
+
+  no_literal_color:
+    name: "Literal colors are forbidden"
+    regex: 'Color\((red|white|hue|\.sRGB)'
+    message: "Use AppColor tokens backed by asset-catalog Any and Dark variants (PRD 13.8)."
+    severity: error
+
+  no_untyped_dictionary_api:
+    name: "Untyped dictionaries are forbidden in APIs"
+    regex: '(func|var|let)[^\n]*\[\s*String\s*:\s*Any\s*\]'
+    message: "Use a typed model instead of [String: Any] (PRD 13.6)."
+    severity: error
