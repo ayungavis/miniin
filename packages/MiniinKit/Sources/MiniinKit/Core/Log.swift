@@ -29,6 +29,9 @@ public enum Log {
     }
 
     private static func signature(of error: some Error) -> String {
+        if let appError = error as? AppError {
+            return appError.code
+        }
         let nsError = error as NSError
         return "\(nsError.domain)#\(nsError.code)"
     }
