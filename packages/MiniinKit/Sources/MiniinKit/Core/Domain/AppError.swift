@@ -1,6 +1,7 @@
 public enum AppError: Error, Sendable, Hashable {
     case incompatibleConfiguration(IncompatibilityReason)
     case corruptedMedia
+    case noVideoTrack
     case insufficientStorage(requiredBytes: Int64, availableBytes: Int64)
     case permissionExpired
     case outputExists
@@ -12,6 +13,7 @@ public extension AppError {
         switch self {
         case .incompatibleConfiguration: "configuration.incompatible"
         case .corruptedMedia: "media.corrupted"
+        case .noVideoTrack: "media.noVideoTrack"
         case .insufficientStorage: "storage.insufficient"
         case .permissionExpired: "permission.expired"
         case .outputExists: "output.exists"
@@ -22,8 +24,8 @@ public extension AppError {
     var isRetryable: Bool {
         switch self {
         case .exportInterrupted: true
-        case .incompatibleConfiguration, .corruptedMedia, .insufficientStorage,
-             .permissionExpired, .outputExists:
+        case .incompatibleConfiguration, .corruptedMedia, .noVideoTrack,
+             .insufficientStorage, .permissionExpired, .outputExists:
             false
         }
     }
@@ -31,7 +33,7 @@ public extension AppError {
     var recovery: RecoveryAction {
         switch self {
         case let .incompatibleConfiguration(reason): reason.recovery
-        case .corruptedMedia: .chooseAnotherVideo
+        case .corruptedMedia, .noVideoTrack: .chooseAnotherVideo
         case .insufficientStorage: .freeUpStorage
         case .permissionExpired: .reauthorizeDestination
         case .outputExists: .resolveNameConflict
