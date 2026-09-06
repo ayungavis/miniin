@@ -123,7 +123,7 @@ extension ConventionsTests {
             let location = "\(file.lastPathComponent):\(index + 1)"
 
             if comment.hasPrefix("// swiftlint:") || comment.hasPrefix("// MARK:")
-                || comment.hasPrefix("// ponytail:") || comment.hasPrefix("// tradeoff:")
+                || comment.hasPrefix("// tradeoff:")
             {
                 continue
             }

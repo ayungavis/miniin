@@ -10,8 +10,8 @@ forms are permitted, each because a tool or a safety rule already requires it:
 
 1. `// swiftlint:` directives.
 2. `// MARK:` navigation.
-3. `// ponytail:` markers on a deliberate shortcut, naming the ceiling it accepts and the upgrade
-   path — for example `// ponytail: global lock, per-account locks if throughput matters`.
+3. `// tradeoff:` markers on a deliberate shortcut, naming the ceiling it accepts and the upgrade
+   path — for example `// tradeoff: global lock, per-account locks if throughput matters`.
 4. A short rationale beside a force unwrap, `try!`, `as!`, or `@unchecked`. It must sit **adjacent**
    to the unsafe line, on it or immediately above it, because adjacency is the only form a machine
    can tell apart from prose.
