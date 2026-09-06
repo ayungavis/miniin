@@ -30,6 +30,38 @@ struct FakeCompressionService: VideoCompressionService {
     }
 }
 
+struct FakeInspection: MediaInspectionService {
+    let media: InspectedMedia?
+
+    func inspect(_ url: URL) async throws(AppError) -> InspectedMedia {
+        guard let media else { throw .corruptedMedia }
+
+        return media
+    }
+}
+
+struct FakeFileAccess: FileAccessService {
+    let spaceFailure: AppError?
+
+    func temporaryOutputURL(for configuration: ExportConfiguration) -> URL {
+        URL(filePath: "/tmp/staged.\(configuration.container.fileExtension)")
+    }
+
+    func ensureSpace(forEstimatedBytes bytes: Int64, at url: URL) throws(AppError) {
+        if let spaceFailure {
+            throw spaceFailure
+        }
+    }
+
+    func promote(
+        _ temporary: URL,
+        to destination: URL,
+        conflict: FilenameConflictPolicy
+    ) throws(AppError) -> URL {
+        destination
+    }
+}
+
 enum TestFixtures {
     static let clock = Date(timeIntervalSince1970: 1000)
 
@@ -100,5 +132,37 @@ enum TestFixtures {
             estimate: nil,
             createdAt: clock
         )
+    }
+
+    static func media(
+        videoCodec: SourceVideoCodec = .h264,
+        width: Int = 3840,
+        height: Int = 2160
+    ) throws -> InspectedMedia {
+        let dimensions = try #require(PixelDimensions(width: width, height: height))
+        let bitrate = try #require(Bitrate(bitsPerSecond: 20_000_000))
+
+        return InspectedMedia(
+            capabilities: SourceCapabilities(
+                container: .mp4,
+                video: SourceVideoTrack(
+                    codec: videoCodec,
+                    dimensions: dimensions,
+                    frameRate: .fps30,
+                    dynamicRange: .sdr,
+                    rotation: .upright
+                ),
+                audio: nil
+            ),
+            url: URL(filePath: "/tmp/clip.mp4"),
+            fileSizeBytes: 200_000_000,
+            duration: .seconds(60),
+            videoBitrate: bitrate,
+            audioBitrate: nil
+        )
+    }
+
+    static func device() -> DeviceCapabilities {
+        DeviceCapabilities(hardwareVideoEncoders: [.h264, .hevc], supportsHDRExport: false)
     }
 }
