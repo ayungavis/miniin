@@ -45,7 +45,8 @@ public extension AppError {
 private extension IncompatibilityReason {
     var recovery: RecoveryAction {
         switch self {
-        case .sourceContainerUnreadable, .sourceVideoCodecUnreadable, .sourceAudioCodecUnreadable:
+        case .sourceContainerUnreadable, .sourceVideoCodecUnreadable, .sourceAudioCodecUnreadable,
+             .engineUnavailable:
             .chooseAnotherVideo
         case .hdrNotSupportedByOutputCodec, .hdrNotSupportedByDevice:
             .convertToSDR

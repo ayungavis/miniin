@@ -5,4 +5,5 @@ public enum IncompatibilityReason: Sendable, Hashable {
     case hdrNotSupportedByOutputCodec(OutputVideoCodec)
     case hdrNotSupportedByDevice
     case hardwareEncoderUnavailable(OutputVideoCodec)
+    case engineUnavailable(ProcessingEngine)
 }
