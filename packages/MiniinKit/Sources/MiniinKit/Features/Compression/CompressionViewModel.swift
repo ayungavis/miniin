@@ -48,7 +48,7 @@ public final class CompressionViewModel {
     }
 
     public func select(preset: CompressionPreset) {
-        guard case let .ready(current) = state,
+        guard let current = state.editableDraft,
               let updated = draft(for: current.media, preset: preset)
         else {
             return
@@ -58,7 +58,7 @@ public final class CompressionViewModel {
     }
 
     public func startExport(to destination: URL) async {
-        guard case let .ready(draft) = state,
+        guard let draft = state.editableDraft,
               draft.incompatibility == nil,
               let routed = routed(draft.selection)
         else {

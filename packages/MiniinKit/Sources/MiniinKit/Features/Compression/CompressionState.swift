@@ -12,6 +12,12 @@ public struct CompressionDraft: Sendable, Equatable {
 
         return reason
     }
+
+    public var defaultDestination: URL {
+        URL.documentsDirectory
+            .appending(path: media.url.deletingPathExtension().lastPathComponent)
+            .appendingPathExtension(configuration.container.fileExtension)
+    }
 }
 
 public struct CompressionResult: Sendable, Equatable {
@@ -39,4 +45,13 @@ public enum CompressionState: Sendable, Equatable {
     case completed(CompressionDraft, CompressionResult)
     case exportFailed(CompressionDraft, AppError)
     case inspectionFailed(AppError)
+}
+
+public extension CompressionState {
+    var editableDraft: CompressionDraft? {
+        switch self {
+        case let .ready(draft), let .exportFailed(draft, _): draft
+        case .empty, .inspecting, .exporting, .completed, .inspectionFailed: nil
+        }
+    }
 }

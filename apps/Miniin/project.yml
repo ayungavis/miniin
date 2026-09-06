@@ -40,6 +40,8 @@ targets:
         CFBundleLocalizations: [en, id]
         CFBundleDevelopmentRegion: en
         LSApplicationCategoryType: public.app-category.video
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
         MiniinEnvironment: $(MINIIN_ENVIRONMENT)
         UILaunchScreen: {}
         ITSAppUsesNonExemptEncryption: false

@@ -1,4 +1,4 @@
-public enum RecoveryAction: String, Sendable {
+public enum RecoveryAction: String, Sendable, CaseIterable {
     case chooseAnotherVideo
     case convertToSDR
     case allowSoftwareEncoding

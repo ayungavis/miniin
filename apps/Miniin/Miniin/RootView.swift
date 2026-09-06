@@ -2,28 +2,18 @@ import MiniinKit
 import SwiftUI
 
 struct RootView: View {
-    var body: some View {
-        VStack(spacing: Spacing.sm) {
-            Text(verbatim: "Miniin")
-                .font(AppFont.screenTitle)
-                .foregroundStyle(AppColor.contentPrimary)
+    let container: AppContainer
 
-            Text("app.tagline")
-                .font(AppFont.body)
-                .foregroundStyle(AppColor.contentSecondary)
-                .multilineTextAlignment(.center)
-        }
-        .padding(Spacing.xl)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(AppColor.background)
-        .tint(AppColor.accent)
+    var body: some View {
+        CompressionView(model: container.compression)
+            .task { await container.queue.observe() }
     }
 }
 
 #Preview("Light") {
-    RootView().preferredColorScheme(.light)
+    RootView(container: AppContainer()).preferredColorScheme(.light)
 }
 
 #Preview("Dark") {
-    RootView().preferredColorScheme(.dark)
+    RootView(container: AppContainer()).preferredColorScheme(.dark)
 }

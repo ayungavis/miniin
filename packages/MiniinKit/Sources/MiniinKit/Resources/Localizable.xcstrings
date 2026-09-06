@@ -1,5 +1,117 @@
 {
   "sourceLanguage" : "en",
-  "strings" : {},
+  "strings" : {
+    "compression.cancel" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Cancel" } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Batal" } } } },
+    "compression.choose" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Choose Video" } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Pilih Video" } } } },
+    "compression.choose.another" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Choose Another Video" } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Pilih Video Lain" } } } },
+    "compression.done.title" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Done" } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Selesai" } } } },
+    "compression.duration" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Took" } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Waktu" } } } },
+    "compression.empty.subtitle" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Make every video lighter." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Bikin videomu lebih ringan." } } } },
+    "compression.empty.title" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Choose a video" } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Pilih video" } } } },
+    "compression.estimate" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Estimated" } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Perkiraan" } } } },
+    "compression.export" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Compress" } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Kompres" } } } },
+    "compression.exporting" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Compressing…" } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Mengompres…" } } } },
+    "compression.format" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Output" } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Keluaran" } } } },
+    "compression.inspecting" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Reading video…" } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Membaca video…" } } } },
+    "compression.original" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Original" } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Asli" } } } },
+    "compression.output" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Compressed" } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Terkompresi" } } } },
+    "compression.reduction" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Saved" } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Dihemat" } } } },
+    "compression.retry" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Try Again" } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Coba Lagi" } } } },
+    "error.configuration.incompatible" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "These settings don’t fit this video." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Pengaturan ini tidak cocok untuk video ini." } } } },
+    "error.engine.unavailable" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "The engine this video needs isn’t available yet." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Mesin yang dibutuhkan video ini belum tersedia." } } } },
+    "error.export.interrupted" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "The export stopped before it finished." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Ekspor berhenti sebelum selesai." } } } },
+    "error.hardware.encoder" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "This device has no hardware encoder for that codec." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Perangkat ini tidak punya enkoder perangkat keras untuk kodek itu." } } } },
+    "error.hdr.codec" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "HDR can’t be kept with that codec." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "HDR tidak bisa dipertahankan dengan kodek itu." } } } },
+    "error.hdr.device" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "This device can’t export HDR." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Perangkat ini tidak bisa mengekspor HDR." } } } },
+    "error.media.corrupted" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "This video can’t be read." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Video ini tidak bisa dibaca." } } } },
+    "error.media.noVideoTrack" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "This file has no video track." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Berkas ini tidak punya trek video." } } } },
+    "error.output.exists" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "A file with that name already exists." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Berkas dengan nama itu sudah ada." } } } },
+    "error.permission.expired" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Miniin can’t write to that location." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Miniin tidak bisa menulis ke lokasi itu." } } } },
+    "error.source.audioCodec" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Miniin can’t read this audio codec." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Miniin tidak bisa membaca kodek audio ini." } } } },
+    "error.source.container" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Miniin can’t read this container." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Miniin tidak bisa membaca wadah ini." } } } },
+    "error.source.videoCodec" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Miniin can’t read this video codec." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Miniin tidak bisa membaca kodek video ini." } } } },
+    "error.storage.insufficient" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "There isn’t enough space." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Ruang penyimpanan tidak cukup." } } } },
+    "recovery.allowSoftwareEncoding" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Allow software encoding." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Izinkan enkode perangkat lunak." } } } },
+    "recovery.chooseAnotherVideo" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Choose another video." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Pilih video lain." } } } },
+    "recovery.convertToSDR" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Convert it to SDR." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Konversikan ke SDR." } } } },
+    "recovery.freeUpStorage" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Free up some space and try again." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Kosongkan ruang lalu coba lagi." } } } },
+    "recovery.reauthorizeDestination" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Choose the destination again." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Pilih tujuan penyimpanan lagi." } } } },
+    "recovery.resolveNameConflict" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Rename the output." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Ganti nama berkas keluaran." } } } },
+    "recovery.retryExport" : { "localizations" : {
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Try the export again." } },
+      "id" : { "stringUnit" : { "state" : "translated", "value" : "Coba ekspor lagi." } } } }
+  },
   "version" : "1.0"
 }

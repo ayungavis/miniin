@@ -11,7 +11,7 @@ MAC_DEST     := platform=macOS
 BUNDLE_ID    := com.miniin.app
 XCB          := xcodebuild -project $(PROJECT) -scheme $(SCHEME) -derivedDataPath $(DERIVED)
 
-.PHONY: help hooks generate format lint test build-ios build-macos ios-validate ios-run clean
+.PHONY: help hooks generate lsp format lint test build-ios build-macos ios-validate ios-run clean
 
 help:
 	@grep -E '^[a-z][a-z-]*:.*## ' $(MAKEFILE_LIST) | sed 's/:.*## /\t/' | expand -t24
@@ -23,6 +23,9 @@ hooks: ## Install git hooks into .git/hooks (keeps Git LFS hooks intact)
 
 generate: ## Regenerate Miniin.xcodeproj from project.yml
 	cd $(APP_DIR) && xcodegen generate --quiet
+
+lsp: ## Bind SourceKit-LSP to the generated project (Zed, VS Code)
+	xcode-build-server config -project $(PROJECT) -scheme $(SCHEME) --build_root $(DERIVED)
 
 format: ## Apply SwiftFormat
 	swiftformat .
