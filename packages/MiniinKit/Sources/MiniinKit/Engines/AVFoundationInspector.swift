@@ -48,7 +48,7 @@ extension AVFoundationInspector {
                 video: video,
                 audio: audio
             ),
-            filename: url.lastPathComponent,
+            url: url,
             fileSizeBytes: fileSize(of: url),
             duration: .seconds(duration.seconds),
             videoBitrate: bitrate(from: videoRate),
@@ -62,6 +62,7 @@ extension AVFoundationInspector {
         let minFrameDuration = try await track.load(.minFrameDuration)
         let nominalFrameRate = try await track.load(.nominalFrameRate)
         let formats = try await track.load(.formatDescriptions)
+        let characteristics = try await track.load(.mediaCharacteristics)
 
         guard
             let dimensions = PixelDimensions(width: Int(size.width), height: Int(size.height)),
@@ -78,7 +79,7 @@ extension AVFoundationInspector {
                 forSubtype: AVFoundationMapping.fourCharacterCode(subtype)
             ), dimensions: dimensions,
             frameRate: frameRate,
-            dynamicRange: track.hasMediaCharacteristic(.containsHDRVideo) ? .hdr : .unknown,
+            dynamicRange: characteristics.contains(.containsHDRVideo) ? .hdr : .unknown,
             rotation: AVFoundationMapping.rotation(for: transform)
         )
     }

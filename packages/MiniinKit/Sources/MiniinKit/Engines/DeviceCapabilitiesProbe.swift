@@ -8,8 +8,8 @@ public enum DeviceCapabilitiesProbe {
 
         return DeviceCapabilities(
             hardwareVideoEncoders: encoders,
-            // tradeoff: HDR inferred from HEVC, probe Main10 profile support if an 8-bit-only encoder appears
-            supportsHDRExport: encoders.contains(.hevc)
+            // tradeoff: HDR export is off until the exporter carries the source transfer function, HLG or PQ
+            supportsHDRExport: false
         )
     }
 }
@@ -49,12 +49,16 @@ extension DeviceCapabilitiesProbe {
         #if os(macOS)
             var value: CFBoolean?
 
-            let status = VTSessionCopyProperty(
-                session,
-                key: kVTCompressionPropertyKey_UsingHardwareAcceleratedVideoEncoder,
-                allocator: kCFAllocatorDefault,
-                valueOut: &value
-            )
+            let status = withUnsafeMutablePointer(
+                to: &value
+            ) { pointer in
+                VTSessionCopyProperty(
+                    session,
+                    key: kVTCompressionPropertyKey_UsingHardwareAcceleratedVideoEncoder,
+                    allocator: kCFAllocatorDefault,
+                    valueOut: pointer
+                )
+            }
 
             guard status == noErr, let value else { return false }
 

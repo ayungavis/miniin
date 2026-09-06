@@ -1,21 +1,27 @@
+import Foundation
+
 public struct InspectedMedia: Sendable, Hashable {
     public let capabilities: SourceCapabilities
-    public let filename: String
+    public let url: URL
     public let fileSizeBytes: Int64
     public let duration: Duration
     public let videoBitrate: Bitrate?
     public let audioBitrate: Bitrate?
 
+    public var filename: String {
+        url.lastPathComponent
+    }
+
     public init(
         capabilities: SourceCapabilities,
-        filename: String,
+        url: URL,
         fileSizeBytes: Int64,
         duration: Duration,
         videoBitrate: Bitrate?,
         audioBitrate: Bitrate?
     ) {
         self.capabilities = capabilities
-        self.filename = filename
+        self.url = url
         self.fileSizeBytes = fileSizeBytes
         self.duration = duration
         self.videoBitrate = videoBitrate

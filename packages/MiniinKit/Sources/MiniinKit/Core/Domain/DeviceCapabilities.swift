@@ -4,8 +4,7 @@ public struct DeviceCapabilities: Sendable, Hashable {
 
     public init(
         hardwareVideoEncoders: Set<OutputVideoCodec>,
-        // tradeoff: HDR export is off until exporter carries the source transfer function, HLG or PQ
-        supportsHDRExport: Bool = false
+        supportsHDRExport: Bool
     ) {
         self.hardwareVideoEncoders = hardwareVideoEncoders
         self.supportsHDRExport = supportsHDRExport

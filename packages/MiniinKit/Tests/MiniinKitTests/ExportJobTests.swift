@@ -117,7 +117,7 @@ extension ExportJobTests {
                 ),
                 audio: nil
             ),
-            filename: "clip.mp4",
+            url: URL(filePath: "/tmp/clip.mp4"),
             fileSizeBytes: 10_000_000,
             duration: .seconds(60),
             videoBitrate: bitrate,
