@@ -6,9 +6,9 @@ import Testing
 struct ExportQueueTests {
     @Test("A submitted job runs to completion")
     func submittedJobCompletes() async throws {
-        let queue = ExportQueue(service: Self.service(), now: { Self.clock })
+        let queue = ExportQueue(service: TestFixtures.service(), now: { TestFixtures.clock })
 
-        try await queue.submit(Self.job())
+        try await queue.submit(TestFixtures.job())
         let jobs = try await Self.waitForAllTerminal(queue)
 
         guard case let .completed(result) = jobs[0].state else {
@@ -22,10 +22,10 @@ struct ExportQueueTests {
     @Test("Cancellation ends in cancelled, not completed")
     func cancellationEndsCancelled() async throws {
         let queue = ExportQueue(
-            service: Self.service(delay: .milliseconds(80)),
-            now: { Self.clock }
+            service: TestFixtures.service(delay: .milliseconds(80)),
+            now: { TestFixtures.clock }
         )
-        let job = try Self.job()
+        let job = try TestFixtures.job()
 
         await queue.submit(job)
         try await Task.sleep(for: .milliseconds(30))
@@ -38,10 +38,10 @@ struct ExportQueueTests {
 
     @Test("A failing service produces a typed failure")
     func failingServiceProducesTypedFailure() async throws {
-        let service = Self.service(failure: .exportInterrupted)
-        let queue = ExportQueue(service: service, now: { Self.clock })
+        let service = TestFixtures.service(failure: .exportInterrupted)
+        let queue = ExportQueue(service: service, now: { TestFixtures.clock })
 
-        try await queue.submit(Self.job())
+        try await queue.submit(TestFixtures.job())
         let jobs = try await Self.waitForAllTerminal(queue)
 
         #expect(jobs[0].state == .failed(error: .exportInterrupted))
@@ -50,13 +50,13 @@ struct ExportQueueTests {
     @Test("The concurrency limit holds")
     func concurrencyLimitHolds() async throws {
         let queue = ExportQueue(
-            service: Self.service(delay: .milliseconds(80)),
+            service: TestFixtures.service(delay: .milliseconds(80)),
             maximumConcurrentExports: 1,
-            now: { Self.clock }
+            now: { TestFixtures.clock }
         )
 
-        try await queue.submit(Self.job())
-        try await queue.submit(Self.job())
+        try await queue.submit(TestFixtures.job())
+        try await queue.submit(TestFixtures.job())
 
         try await Task.sleep(for: .milliseconds(30))
         let inFlight = await queue.snapshot()
@@ -69,9 +69,9 @@ struct ExportQueueTests {
 
     @Test("A job naming an unavailable engine fails at admission")
     func unavailableEngineFailsAtAdmission() async throws {
-        let queue = ExportQueue(service: Self.service(), now: { Self.clock })
+        let queue = ExportQueue(service: TestFixtures.service(), now: { TestFixtures.clock })
 
-        try await queue.submit(Self.job(engine: .ffmpeg))
+        try await queue.submit(TestFixtures.job(engine: .ffmpeg))
         let jobs = try await Self.waitForAllTerminal(queue)
 
         #expect(
@@ -81,41 +81,13 @@ struct ExportQueueTests {
 
     @Test("Timestamps come from the injected clock")
     func timestampsComeFromTheInjectedClock() async throws {
-        let queue = ExportQueue(service: Self.service(), now: { Self.clock })
+        let queue = ExportQueue(service: TestFixtures.service(), now: { TestFixtures.clock })
 
-        try await queue.submit(Self.job())
+        try await queue.submit(TestFixtures.job())
         let jobs = try await Self.waitForAllTerminal(queue)
 
-        #expect(jobs[0].startedAt == Self.clock)
-        #expect(jobs[0].completedAt == Self.clock)
-    }
-}
-
-struct FakeCompressionService: VideoCompressionService {
-    let supportedEngines: Set<ProcessingEngine>
-    let events: [ExportEvent]
-    let delay: Duration
-
-    func export(_ job: ExportJob) -> AsyncStream<ExportEvent> {
-        let (stream, continuation) = AsyncStream<ExportEvent>.makeStream()
-
-        let task = Task {
-            for event in events {
-                try? await Task.sleep(for: delay)
-
-                if Task.isCancelled {
-                    break
-                }
-
-                continuation.yield(event)
-            }
-
-            continuation.finish()
-        }
-
-        continuation.onTermination = { @Sendable _ in task.cancel() }
-
-        return stream
+        #expect(jobs[0].startedAt == TestFixtures.clock)
+        #expect(jobs[0].completedAt == TestFixtures.clock)
     }
 }
 
