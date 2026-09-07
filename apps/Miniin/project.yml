@@ -28,6 +28,9 @@ targets:
     dependencies:
       - package: MiniinKit
         product: MiniinKit
+      - framework: ../../vendor/ffmpeg/FFmpeg.xcframework
+        embed: true
+        codeSign: true
     configFiles:
       Debug: Config/Debug.xcconfig
       Release: Config/Release.xcconfig
@@ -50,6 +53,11 @@ targets:
         GENERATE_INFOPLIST_FILE: NO
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: ""
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: NO
+        SWIFT_OBJC_BRIDGING_HEADER: Miniin/Miniin-Bridging-Header.h
+        LD_RUNPATH_SEARCH_PATHS:
+          - $(inherited)
+          - "@executable_path/Frameworks"
+          - "@executable_path/../Frameworks"
 
 schemes:
   Miniin:

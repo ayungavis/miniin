@@ -15,5 +15,7 @@ struct AppContainer {
             queue: queue,
             device: DeviceCapabilitiesProbe.detect()
         )
+
+        Log.engineFFmpeg.info("linked libavformat \(FFmpegLink.version, privacy: .public)")
     }
 }

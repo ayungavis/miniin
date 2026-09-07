@@ -168,4 +168,17 @@ extension ConventionsTests {
 
         #expect(violations.isEmpty, Comment(rawValue: violations.joined(separator: "\n")))
     }
+
+    @Test("The FFmpeg configuration stays LGPL-clean")
+    func ffmpegConfigurationStaysLGPLClean() throws {
+        let configure = try String(
+            contentsOf: Self.repoRoot.appending(path: "vendor/ffmpeg/CONFIGURE"),
+            encoding: .utf8
+        )
+
+        #expect(configure.contains("--disable-gpl"))
+        #expect(configure.contains("--disable-nonfree"))
+        #expect(!configure.contains("libx264"))
+        #expect(!configure.contains("libx265"))
+    }
 }

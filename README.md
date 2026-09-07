@@ -10,14 +10,15 @@ is not implemented yet.
 
 ## Requirements
 
-| Tool | Version used |
-|---|---|
-| Xcode | 26.6 |
-| Swift | 6.3 |
-| [XcodeGen](https://github.com/yonaskolb/XcodeGen) | 2.46 |
-| [SwiftLint](https://github.com/realm/SwiftLint) | 0.65 |
-| [SwiftFormat](https://github.com/nicklockwood/SwiftFormat) | 0.62 |
-| [xcbeautify](https://github.com/cpisciotta/xcbeautify) | 3.2 |
+| Tool                                                       | Version used                   |
+| ---------------------------------------------------------- | ------------------------------ |
+| Xcode                                                      | 26.6                           |
+| Swift                                                      | 6.3                            |
+| [XcodeGen](https://github.com/yonaskolb/XcodeGen)          | 2.46                           |
+| [SwiftLint](https://github.com/realm/SwiftLint)            | 0.65                           |
+| [SwiftFormat](https://github.com/nicklockwood/SwiftFormat) | 0.62                           |
+| [xcbeautify](https://github.com/cpisciotta/xcbeautify)     | 3.2                            |
+| FFmpeg                                                     | n7.1.1, built by `make ffmpeg` |
 
 ```sh
 brew install xcodegen swiftlint swiftformat xcbeautify
@@ -35,6 +36,21 @@ make ios-run        # build, install, and launch on the iOS Simulator
 
 `Miniin.xcodeproj` is generated and not committed. Run `make generate` after pulling changes to
 `apps/Miniin/project.yml`, then open the project in Xcode.
+
+### FFmpeg
+
+`make ios-validate` links `vendor/ffmpeg/FFmpeg.xcframework`, which is **not committed**. Build it
+once per clone:
+
+```sh
+make ffmpeg         # clones FFmpeg at the pinned tag and builds three arm64 slices
+```
+
+It takes a while. `vendor/ffmpeg/CONFIGURE` records the exact configure line of the last build.
+
+On CI, cache `vendor/ffmpeg/FFmpeg.xcframework` keyed on a hash of `vendor/ffmpeg/build.sh` plus the
+pinned tag, or publish the framework as a release asset. Committing it is the worse option: LFS
+bandwidth is metered per clone, and storage is permanent per version.
 
 ## Layout
 
