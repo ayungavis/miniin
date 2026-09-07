@@ -1,0 +1,27 @@
+# Written by vendor/ffmpeg/build.sh. Do not edit.
+# FFmpeg n7.1.1
+
+./configure \
+  --disable-gpl \
+  --disable-nonfree \
+  --disable-programs \
+  --disable-doc \
+  --disable-everything \
+  --disable-network \
+  --disable-autodetect \
+  --disable-avdevice \
+  --disable-shared \
+  --enable-static \
+  --enable-pic \
+  --enable-cross-compile \
+  --enable-videotoolbox \
+  --enable-protocol=file \
+  --enable-demuxer=mov,matroska,avi \
+  --enable-muxer=mp4,mov \
+  --enable-decoder=h264,hevc,prores,mpeg4,vp9,av1,aac,alac,mp3,vorbis,opus \
+  --enable-decoder=pcm_s16le,pcm_s24le,pcm_s32le,pcm_f32le \
+  --enable-encoder=h264_videotoolbox,hevc_videotoolbox,aac \
+  --enable-parser=h264,hevc,mpeg4video,vp9,av1,aac,mpegaudio,vorbis,opus \
+  --enable-bsf=h264_mp4toannexb,hevc_mp4toannexb,extract_extradata,aac_adtstoasc \
+  --enable-filter=scale,format,aformat,aresample,copy,fps,null,anull,setpts,asetpts \
+  --enable-filter=transpose,hflip,vflip
