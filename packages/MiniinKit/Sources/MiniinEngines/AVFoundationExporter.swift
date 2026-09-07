@@ -1,5 +1,6 @@
 import AVFoundation
 import Foundation
+import MiniinCore
 
 public struct AVFoundationExporter: VideoCompressionService {
     public let supportedEngines: Set<ProcessingEngine> = [.avFoundation]

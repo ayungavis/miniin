@@ -1,5 +1,6 @@
-import MiniinKit
+import MiniinCore
 import Testing
+@testable import MiniinEngines
 
 @Suite("Device capabilities probe")
 struct DeviceCapabilitiesProbeTests {

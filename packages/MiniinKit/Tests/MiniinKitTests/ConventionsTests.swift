@@ -19,12 +19,12 @@ struct ConventionsTests {
     func colorTokensHaveDarkVariants() throws {
         let source = try String(
             contentsOf: Self.repoRoot.appending(
-                path: "packages/MiniinKit/Sources/MiniinKit/DesignSystem/AppColor.swift"
+                path: "packages/MiniinKit/Sources/MiniinDesignSystem/AppColor.swift"
             ),
             encoding: .utf8
         )
         let catalog = Self.repoRoot.appending(
-            path: "packages/MiniinKit/Sources/MiniinKit/Resources/Colors.xcassets"
+            path: "packages/MiniinKit/Sources/MiniinDesignSystem/Resources/Colors.xcassets"
         )
         let names = Self.matches(
             in: source, pattern: #"Color\("([^"]+)", bundle: \.module\)"#, group: 1

@@ -1,4 +1,5 @@
 import Foundation
+import MiniinCore
 
 public struct CompressionDraft: Sendable, Equatable {
     public let media: InspectedMedia

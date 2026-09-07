@@ -1,6 +1,6 @@
 import Foundation
 import Testing
-@testable import MiniinKit
+@testable import MiniinCore
 
 @MainActor
 @Suite("Export queue model")

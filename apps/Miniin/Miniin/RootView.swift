@@ -1,4 +1,5 @@
-import MiniinKit
+import MiniinCore
+import MiniinFeatures
 import SwiftUI
 
 struct RootView: View {

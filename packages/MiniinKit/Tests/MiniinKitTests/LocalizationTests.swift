@@ -1,6 +1,6 @@
 import Foundation
 import Testing
-@testable import MiniinKit
+@testable import MiniinCore
 
 @Suite("Localization")
 struct LocalizationTests {
@@ -22,7 +22,7 @@ extension LocalizationTests {
         .deletingLastPathComponent()
         .deletingLastPathComponent()
         .deletingLastPathComponent()
-        .appending(path: "Sources/MiniinKit/Resources/Localizable.xcstrings")
+        .appending(path: "Sources/MiniinFeatures/Resources/Localizable.xcstrings")
 
     static let errors: [AppError] = [
         .corruptedMedia,

@@ -1,7 +1,8 @@
 import AVFoundation
 import Foundation
 import Testing
-@testable import MiniinKit
+@testable import MiniinCore
+@testable import MiniinEngines
 
 @Suite("AVFoundation export settings")
 struct AVFoundationExportSettingsTests {

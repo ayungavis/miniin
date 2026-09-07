@@ -1,6 +1,6 @@
 import Foundation
 import Testing
-@testable import MiniinKit
+@testable import MiniinCore
 
 @Suite("Local file access")
 struct LocalFileAccessTests {

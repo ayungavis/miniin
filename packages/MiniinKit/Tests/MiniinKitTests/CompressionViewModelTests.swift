@@ -1,6 +1,8 @@
 import Foundation
 import Testing
-@testable import MiniinKit
+@testable import MiniinCore
+@testable import MiniinEngines
+@testable import MiniinFeatures
 
 @MainActor
 @Suite("Compression view model")

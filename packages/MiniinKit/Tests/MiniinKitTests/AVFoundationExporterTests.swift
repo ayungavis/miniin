@@ -1,6 +1,7 @@
 import Foundation
 import Testing
-@testable import MiniinKit
+@testable import MiniinCore
+@testable import MiniinEngines
 
 @Suite("AVFoundation exporter")
 struct AVFoundationExporterTests {
@@ -76,13 +77,15 @@ struct AVFoundationExporterTests {
         let events = await task.value
         let removed = try await Self.waitForRemoval(of: output)
 
-        #expect(!events.contains {
-            if case .finished = $0 {
-                true
-            } else {
-                false
+        #expect(
+            !events.contains {
+                if case .finished = $0 {
+                    true
+                } else {
+                    false
+                }
             }
-        })
+        )
         #expect(removed)
     }
 
@@ -98,13 +101,15 @@ struct AVFoundationExporterTests {
 
         let events = await Self.collect(exporter.export(job))
 
-        #expect(events.contains {
-            if case .failed = $0 {
-                true
-            } else {
-                false
+        #expect(
+            events.contains {
+                if case .failed = $0 {
+                    true
+                } else {
+                    false
+                }
             }
-        })
+        )
     }
 }
 

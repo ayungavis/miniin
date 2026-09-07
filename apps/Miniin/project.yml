@@ -27,7 +27,11 @@ targets:
       - path: Miniin
     dependencies:
       - package: MiniinKit
-        product: MiniinKit
+        product: MiniinCore
+      - package: MiniinKit
+        product: MiniinEngines
+      - package: MiniinKit
+        product: MiniinFeatures
       - framework: ../../vendor/ffmpeg/FFmpeg.xcframework
         embed: true
         codeSign: true

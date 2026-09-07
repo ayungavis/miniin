@@ -1,5 +1,6 @@
 import AVFoundation
 import Foundation
+import MiniinCore
 
 enum AVFoundationExportSettings {
     // swiftlint:disable:next no_untyped_dictionary_api

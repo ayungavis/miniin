@@ -1,5 +1,5 @@
 import Foundation
-import MiniinKit
+import MiniinCore
 import Testing
 
 @Suite("Media vocabulary")

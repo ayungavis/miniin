@@ -1,6 +1,7 @@
 import CoreGraphics
 import CoreMedia
 import Foundation
+import MiniinCore
 
 enum AVFoundationMapping {
     static func container(for url: URL) -> SourceContainer {

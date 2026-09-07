@@ -1,6 +1,6 @@
 import Foundation
 import Testing
-@testable import MiniinKit
+@testable import MiniinCore
 
 struct FakeCompressionService: VideoCompressionService {
     let supportedEngines: Set<ProcessingEngine>

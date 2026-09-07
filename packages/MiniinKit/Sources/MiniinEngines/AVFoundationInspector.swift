@@ -1,5 +1,6 @@
 import AVFoundation
 import Foundation
+import MiniinCore
 
 public struct AVFoundationInspector: MediaInspectionService {
     public init() {}

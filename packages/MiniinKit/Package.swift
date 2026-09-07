@@ -7,17 +7,35 @@ let package = Package(
     defaultLocalization: "en",
     platforms: [.iOS(.v18), .macOS(.v15)],
     products: [
-        .library(name: "MiniinKit", targets: ["MiniinKit"])
+        .library(name: "MiniinCore", targets: ["MiniinCore"]),
+        .library(name: "MiniinDesignSystem", targets: ["MiniinDesignSystem"]),
+        .library(name: "MiniinEngines", targets: ["MiniinEngines"]),
+        .library(name: "MiniinFeatures", targets: ["MiniinFeatures"])
     ],
     targets: [
         .target(
-            name: "MiniinKit",
+            name: "MiniinCore",
+            swiftSettings: [.swiftLanguageMode(.v6)]
+        ),
+        .target(
+            name: "MiniinDesignSystem",
+            resources: [.process("Resources")],
+            swiftSettings: [.swiftLanguageMode(.v6)]
+        ),
+        .target(
+            name: "MiniinEngines",
+            dependencies: ["MiniinCore"],
+            swiftSettings: [.swiftLanguageMode(.v6)]
+        ),
+        .target(
+            name: "MiniinFeatures",
+            dependencies: ["MiniinCore", "MiniinDesignSystem"],
             resources: [.process("Resources")],
             swiftSettings: [.swiftLanguageMode(.v6)]
         ),
         .testTarget(
             name: "MiniinKitTests",
-            dependencies: ["MiniinKit"],
+            dependencies: ["MiniinCore", "MiniinDesignSystem", "MiniinEngines", "MiniinFeatures"],
             swiftSettings: [.swiftLanguageMode(.v6)]
         )
     ]

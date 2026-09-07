@@ -1,4 +1,6 @@
-import MiniinKit
+import MiniinCore
+import MiniinEngines
+import MiniinFeatures
 
 @MainActor
 struct AppContainer {

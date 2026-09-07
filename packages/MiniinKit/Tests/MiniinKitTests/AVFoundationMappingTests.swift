@@ -2,7 +2,8 @@ import CoreGraphics
 import CoreMedia
 import Foundation
 import Testing
-@testable import MiniinKit
+@testable import MiniinCore
+@testable import MiniinEngines
 
 @Suite("AVFoundation mapping")
 struct AVFoundationMappingTests {

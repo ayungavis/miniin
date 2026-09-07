@@ -11,7 +11,7 @@ MAC_DEST     := platform=macOS
 BUNDLE_ID    := com.miniin.app
 XCB          := xcodebuild -project $(PROJECT) -scheme $(SCHEME) -derivedDataPath $(DERIVED)
 
-.PHONY: help hooks ffmpeg generate lsp format lint test build-ios build-macos ios-validate ios-run clean
+.PHONY: help hooks ffmpeg generate lsp format lint test build-ios build-macos ios-validate ios-run clean clean-cache
 
 help:
 	@grep -E '^[a-z][a-z-]*:.*## ' $(MAKEFILE_LIST) | sed 's/:.*## /\t/' | expand -t24
@@ -57,3 +57,6 @@ ios-run: generate ## Build, install, and launch on the iOS Simulator
 
 clean: ## Remove build artifacts
 	rm -rf build $(KIT_DIR)/.build
+
+clean-cache: ## Remove the Clang module cache (fixes "unexpected variant during dependency scanning")
+      rm -rf $(DERIVED)/ModuleCache.noindex

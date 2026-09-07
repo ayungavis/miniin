@@ -1,6 +1,7 @@
 import Foundation
 import Testing
-@testable import MiniinKit
+@testable import MiniinCore
+@testable import MiniinEngines
 
 @Suite("AVFoundation inspector")
 struct AVFoundationInspectorTests {

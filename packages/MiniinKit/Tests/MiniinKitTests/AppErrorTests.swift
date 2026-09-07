@@ -1,4 +1,4 @@
-import MiniinKit
+import MiniinCore
 import Testing
 
 @Suite("App error")
